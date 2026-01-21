@@ -148,7 +148,7 @@ export default function ContactSection() {
               <h4 className="text-sm font-medium text-slate-500 dark:text-slate-400 mb-6 transition-colors duration-500">Connect directly</h4>
               <div className="space-y-4">
                 <a 
-                  href="mailto:srivasdv@mail.uc.edu"
+                  href="mailto:deepika.srivastava1910@gmail.com"
                   className="flex items-center gap-4 p-4 rounded-2xl hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors group"
                 >
                   <div className="w-12 h-12 rounded-xl bg-indigo-50 dark:bg-indigo-950/30 flex items-center justify-center group-hover:bg-indigo-100 dark:group-hover:bg-indigo-950/50 transition-colors">
