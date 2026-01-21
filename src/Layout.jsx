@@ -10,6 +10,7 @@ const navItems = [
   { label: 'Skills', href: '#skills' },
   { label: 'Projects', href: '#projects' },
   { label: 'Certifications', href: '#certifications' },
+  { label: 'Education', href: '#education' },
   { label: 'Contact', href: '#contact' }
 ];
 
@@ -36,7 +37,8 @@ function LayoutContent({ children }) {
         '#skills': 3,
         '#projects': 4,
         '#certifications': 5,
-        '#contact': 6
+        '#education': 6,
+        '#contact': 7
       };
       const sections = document.querySelectorAll('section');
       const index = sectionMap[href] || 0;

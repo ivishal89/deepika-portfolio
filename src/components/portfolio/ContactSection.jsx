@@ -148,7 +148,7 @@ export default function ContactSection() {
               <h4 className="text-sm font-medium text-slate-500 dark:text-slate-400 mb-6 transition-colors duration-500">Connect directly</h4>
               <div className="space-y-4">
                 <a 
-                  href="mailto:deepika.srivastava1910@gmail.com"
+                  href="mailto:dipsy.srvstv@gmail.com"
                   className="flex items-center gap-4 p-4 rounded-2xl hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors group"
                 >
                   <div className="w-12 h-12 rounded-xl bg-indigo-50 dark:bg-indigo-950/30 flex items-center justify-center group-hover:bg-indigo-100 dark:group-hover:bg-indigo-950/50 transition-colors">
@@ -156,7 +156,7 @@ export default function ContactSection() {
                   </div>
                   <div className="flex-1">
                     <p className="text-sm text-slate-500 dark:text-slate-400 transition-colors duration-500">Email</p>
-                    <p className="font-medium text-[#2D2D2D] dark:text-slate-100 transition-colors duration-500">srivasdv@mail.uc.edu</p>
+                    <p className="font-medium text-[#2D2D2D] dark:text-slate-100 transition-colors duration-500">dipsy.srvstv@gmail.com</p>
                   </div>
                   <ArrowUpRight className="w-4 h-4 text-slate-400 dark:text-slate-500 opacity-0 group-hover:opacity-100 transition-all duration-500" />
                 </a>
