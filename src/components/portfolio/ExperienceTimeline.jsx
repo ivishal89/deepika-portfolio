@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import { motion, useInView, useScroll, useTransform } from 'framer-motion';
-import { Sparkles, TrendingUp, Users, Award } from 'lucide-react';
+import { Sparkles, TrendingUp, Users, Zap, Award } from 'lucide-react';
 
 const experiences = [
   {

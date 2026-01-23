@@ -1,7 +1,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ChevronDown } from 'lucide-react';
+import { ChevronDown, Download } from 'lucide-react';
 import GenerativeShape from './GenerativeShape';
+import resumePdf from '@/assets/Deepika_Srivastava_Analyst.pdf';
 
 export default function HeroSection() {
   return (
@@ -29,7 +30,7 @@ export default function HeroSection() {
 
 
       {/* Content */}
-      <div className="relative z-10 text-center px-6 max-w-5xl mx-auto">
+      <div className="relative z-10 text-center px-6 max-w-5xl mx-auto pb-32">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -96,7 +97,7 @@ export default function HeroSection() {
           </motion.p>
 
           <motion.div
-            className="mt-16 flex items-center justify-center gap-8"
+            className="mt-16 flex flex-wrap items-center justify-center gap-8"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 1.2, duration: 0.8 }}>
@@ -110,6 +111,22 @@ export default function HeroSection() {
               <div className="w-2 h-2 rounded-full bg-violet-500" />
               <span className="text-sm text-slate-500 dark:text-slate-400 transition-colors duration-500">MSIS, University of Cincinnati</span>
             </div>
+          </motion.div>
+
+          <motion.div
+            className="mt-12"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1.4, duration: 0.8 }}>
+            <motion.a
+              href={resumePdf}
+              download="Deepika_Srivastava_Resume.pdf"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="inline-flex items-center gap-3 px-8 py-4 rounded-full bg-gradient-to-r from-indigo-600 via-violet-600 to-indigo-600 bg-[length:200%_100%] hover:bg-right text-white font-medium shadow-2xl shadow-indigo-500/30 transition-all duration-500 shine-effect">
+              <Download className="w-5 h-5" />
+              <span>Download Resume</span>
+            </motion.a>
           </motion.div>
         </motion.div>
       </div>

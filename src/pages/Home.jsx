@@ -9,6 +9,7 @@ import CertificationsSection from '@/components/portfolio/CertificationsSection'
 import EducationSection from '@/components/portfolio/EducationSection';
 import ContactSection from '@/components/portfolio/ContactSection';
 import Footer from '@/components/portfolio/Footer';
+import FloatingResumeButton from '@/components/portfolio/FloatingResumeButton';
 
 export default function Home() {
   return (
@@ -27,6 +28,7 @@ export default function Home() {
       <EducationSection />
       <ContactSection />
       <Footer />
+      <FloatingResumeButton />
     </motion.div>
   );
 }
