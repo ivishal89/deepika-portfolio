@@ -9,12 +9,16 @@ import { toast } from "sonner";
 
 export default function ContactSection() {
   const ref = useRef(null);
+  const formRef = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const [state, handleSubmit] = useForm("mwvokjee");
 
   React.useEffect(() => {
     if (state.succeeded) {
       toast.success("Message sent! I'll be in touch soon.");
+      if (formRef.current) {
+        formRef.current.reset();
+      }
     }
   }, [state.succeeded]);
 
@@ -72,7 +76,7 @@ export default function ContactSection() {
             transition={{ delay: 0.4, duration: 0.8 }}
             className="lg:col-span-3"
           >
-            <form onSubmit={handleSubmit} className="space-y-6">
+            <form ref={formRef} onSubmit={handleSubmit} className="space-y-6">
               {state.succeeded && (
                 <motion.div
                   initial={{ opacity: 0, y: -10 }}
