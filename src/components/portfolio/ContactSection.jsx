@@ -1,5 +1,6 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
+import { useForm, ValidationError } from '@formspree/react';
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
@@ -9,24 +10,13 @@ import { toast } from "sonner";
 export default function ContactSection() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    message: ''
-  });
+  const [state, handleSubmit] = useForm("mwvokjee");
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 1500));
-    
-    toast.success("Message sent! I'll be in touch soon.");
-    setFormData({ name: '', email: '', message: '' });
-    setIsSubmitting(false);
-  };
+  React.useEffect(() => {
+    if (state.succeeded) {
+      toast.success("Message sent! I'll be in touch soon.");
+    }
+  }, [state.succeeded]);
 
   return (
     <section ref={ref} className="relative py-32 md:py-48 bg-[#FAFAF8] dark:bg-slate-950 overflow-hidden transition-colors duration-500">
@@ -83,45 +73,67 @@ export default function ContactSection() {
             className="lg:col-span-3"
           >
             <form onSubmit={handleSubmit} className="space-y-6">
+              {state.succeeded && (
+                <motion.div
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="p-4 rounded-xl bg-green-50 dark:bg-green-950/20 border border-green-200 dark:border-green-900/30 text-green-700 dark:text-green-400"
+                >
+                  Thanks for reaching out! I'll be in touch soon.
+                </motion.div>
+              )}
               <div className="grid md:grid-cols-2 gap-6">
                 <div className="space-y-2">
-                  <label className="text-sm font-medium text-slate-700 dark:text-slate-300 transition-colors duration-500">Name</label>
+                  <label htmlFor="name" className="text-sm font-medium text-slate-700 dark:text-slate-300 transition-colors duration-500">Name</label>
                   <Input
-                    value={formData.name}
-                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                    id="name"
+                    name="name"
+                    type="text"
                     placeholder="Your name"
                     className="h-14 rounded-xl border-slate-200 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100 focus:border-indigo-500 focus:ring-indigo-500/20 transition-colors duration-500"
                     required
                   />
                 </div>
                 <div className="space-y-2">
-                  <label className="text-sm font-medium text-slate-700 dark:text-slate-300 transition-colors duration-500">Email</label>
+                  <label htmlFor="email" className="text-sm font-medium text-slate-700 dark:text-slate-300 transition-colors duration-500">Email</label>
                   <Input
+                    id="email"
+                    name="email"
                     type="email"
-                    value={formData.email}
-                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                     placeholder="you@example.com"
                     className="h-14 rounded-xl border-slate-200 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100 focus:border-indigo-500 focus:ring-indigo-500/20 transition-colors duration-500"
                     required
                   />
+                  <ValidationError 
+                    prefix="Email" 
+                    field="email"
+                    errors={state.errors}
+                    className="text-xs text-red-600 dark:text-red-400 mt-1"
+                  />
                 </div>
               </div>
               <div className="space-y-2">
-                <label className="text-sm font-medium text-slate-700 dark:text-slate-300 transition-colors duration-500">Message</label>
+                <label htmlFor="message" className="text-sm font-medium text-slate-700 dark:text-slate-300 transition-colors duration-500">Message</label>
                 <Textarea
-                  value={formData.message}
-                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                  id="message"
+                  name="message"
                   placeholder="What would you like to discuss?"
                   className="min-h-[160px] rounded-xl border-slate-200 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100 focus:border-indigo-500 focus:ring-indigo-500/20 resize-none transition-colors duration-500"
                   required
                 />
+                <ValidationError 
+                  prefix="Message" 
+                  field="message"
+                  errors={state.errors}
+                  className="text-xs text-red-600 dark:text-red-400 mt-1"
+                />
               </div>
               <Button
                 type="submit"
-                disabled={isSubmitting}
-                className="w-full h-14 rounded-xl bg-gradient-to-r from-indigo-600 via-violet-600 to-indigo-600 bg-[length:200%_100%] hover:bg-right text-white font-medium shadow-xl shadow-indigo-500/30 transition-all duration-500 shine-effect"
+                disabled={state.submitting}
+                className="w-full h-14 rounded-xl bg-gradient-to-r from-indigo-600 via-violet-600 to-indigo-600 bg-[length:200%_100%] hover:bg-right text-white font-medium shadow-xl shadow-indigo-500/30 transition-all duration-500 shine-effect disabled:opacity-70 disabled:cursor-not-allowed"
               >
-                {isSubmitting ? (
+                {state.submitting ? (
                   <motion.div
                     animate={{ rotate: 360 }}
                     transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
